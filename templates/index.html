@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ChemCraft - Gamified Periodic Table</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🧪 ChemCraft</h1>
+        <p>Where Chemistry meets Creativity — Play, Learn, and Master the Elements!</p>
+    </header>
+
+    <main>
+        <!-- Navigation Tabs -->
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('periodic-table')">Periodic Table</button>
+            <button class="tab-button" onclick="showTab('compound-mixer')">⚗️ Element Mixer</button>
+            <button class="tab-button" onclick="showTab('quiz')">Quiz Mode</button>
+            <button class="tab-button" onclick="showTab('search')">Element Search</button>
+        </div>
+
+        <!-- Periodic Table Tab -->
+        <div id="periodic-table" class="tab-content active">
+            <div class="periodic-table-container">
+                <div id="periodic-table-grid" class="periodic-table">
+                    <!-- Elements will be dynamically loaded here -->
+                </div>
+            </div>
+
+            <!-- Element Details Modal -->
+            <div id="element-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <span class="close">&times;</span>
+                        <div id="element-title">
+                            <!-- Element title will be loaded here -->
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div id="element-details">
+                            <!-- Element details will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compound Mixer Tab -->
+        <div id="compound-mixer" class="tab-content">
+            <div class="mixer-container">
+                <div class="mixer-header">
+                    <h2>⚗️ Element Mixing Laboratory</h2>
+                    <p>Select elements from the periodic table below to create compounds and discover chemistry!</p>
+                </div>
+
+                <!-- Left Panel: Element Selection & Controls -->
+                <div class="mixer-left-panel">
+                    <!-- Element Selection Area -->
+                    <div class="element-selection">
+                        <h3>🧪 Mixing Chamber</h3>
+                        <div id="selected-elements" class="selected-elements-container">
+                            <div class="drop-zone">
+                                <p>Click elements from the periodic table to add them here</p>
+                            </div>
+                        </div>
+                        <div class="mixer-controls">
+                            <button id="mix-elements-btn" class="btn btn-primary" disabled>🔥 Mix Elements</button>
+                            <button id="clear-selection-btn" class="btn btn-secondary">🗑️ Clear All</button>
+                            <button id="random-compound-btn" class="btn btn-accent">🎲 Random Compound</button>
+                        </div>
+                    </div>
+
+                    <!-- Reaction Animation Area -->
+                    <div id="reaction-animation" class="reaction-animation">
+                        <!-- Animation will be displayed here -->
+                    </div>
+                </div>
+
+                <!-- Right Panel: Periodic Table & Results -->
+                <div class="mixer-right-panel">
+                    <!-- Mini Periodic Table for Selection -->
+                    <div class="mini-periodic-table-container">
+                        <h3>🔬 Element Selection</h3>
+                        <div id="mini-periodic-table" class="mini-periodic-table">
+                            <!-- Mini periodic table will be rendered here -->
+                        </div>
+                    </div>
+
+                    <!-- Compound Result Area -->
+                    <div id="compound-result" class="compound-result">
+                        <!-- Compound information will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Tab -->
+        <div id="quiz" class="tab-content">
+            <div class="quiz-container">
+                <div class="quiz-header">
+                    <h2>Element Quiz Challenge</h2>
+                    <div class="score-display">
+                        <span>Score: <span id="score">0</span></span>
+                        <span>Questions: <span id="question-count">0</span></span>
+                    </div>
+                </div>
+
+                <div id="quiz-content">
+                    <div id="question-container">
+                        <h3 id="question-text">Click "New Question" to start!</h3>
+                        <div id="answers-container">
+                            <!-- Answer buttons will be generated here -->
+                        </div>
+                    </div>
+
+                    <div class="quiz-controls">
+                        <button id="new-question-btn" class="btn btn-primary">New Question</button>
+                        <button id="hint-btn" class="btn btn-secondary">Show Hint</button>
+                    </div>
+
+                    <div id="feedback" class="feedback">
+                        <!-- Feedback will be shown here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Tab -->
+        <div id="search" class="tab-content">
+            <div class="search-container">
+                <h2>Element Search</h2>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search by name, symbol, or atomic number...">
+                    <button id="search-btn" class="btn btn-primary">Search</button>
+                </div>
+                <div id="search-results">
+                    <!-- Search results will be displayed here -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

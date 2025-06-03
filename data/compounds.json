@@ -1,0 +1,469 @@
+{
+  "compounds": [
+    {
+      "formula": "HCl",
+      "name": "Hydrochloric Acid",
+      "elements": ["H", "Cl"],
+      "element_counts": {"H": 1, "Cl": 1},
+      "molecular_mass": 36.458,
+      "state": "Gas (pure), Liquid (aqueous)",
+      "melting_point": -114.22,
+      "boiling_point": -85.05,
+      "density": 1.18,
+      "color": "Colorless",
+      "solubility": "Completely miscible with water",
+      "reactivity": "Strong acid, highly corrosive",
+      "uses": [
+        "Industrial chemical production",
+        "Metal cleaning and pickling", 
+        "Food processing (stomach acid)",
+        "Swimming pool pH control",
+        "Laboratory reagent"
+      ],
+      "formation_reaction": "H₂ + Cl₂ → 2HCl",
+      "bond_type": "Covalent (polar)",
+      "interesting_facts": [
+        "Main component of stomach acid",
+        "One of the strongest acids",
+        "Produces white fumes in moist air"
+      ],
+      "safety": "Extremely corrosive and dangerous",
+      "discovery": "Known to medieval alchemists",
+      "category": "Halide"
+    },
+    {
+      "formula": "NaCl",
+      "name": "Sodium Chloride",
+      "elements": ["Na", "Cl"],
+      "element_counts": {"Na": 1, "Cl": 1},
+      "molecular_mass": 58.44,
+      "state": "Solid",
+      "melting_point": 801,
+      "boiling_point": 1465,
+      "density": 2.16,
+      "color": "White crystalline",
+      "solubility": "Highly soluble in water (360 g/L at 25°C)",
+      "reactivity": "Stable under normal conditions",
+      "uses": [
+        "Food seasoning and preservation",
+        "De-icing roads in winter",
+        "Chemical industry feedstock",
+        "Water softening",
+        "Medical saline solutions"
+      ],
+      "formation_reaction": "2Na + Cl₂ → 2NaCl",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Essential for human life",
+        "Forms cubic crystals",
+        "Conducts electricity when dissolved"
+      ],
+      "safety": "Generally safe in normal amounts",
+      "discovery": "Known since prehistoric times",
+      "category": "Halide"
+    },
+    {
+      "formula": "H2O",
+      "name": "Water",
+      "elements": ["H", "O"],
+      "element_counts": {"H": 2, "O": 1},
+      "molecular_mass": 18.015,
+      "state": "Liquid",
+      "melting_point": 0,
+      "boiling_point": 100,
+      "density": 1.0,
+      "color": "Colorless",
+      "solubility": "N/A (Universal solvent)",
+      "reactivity": "Generally unreactive",
+      "uses": [
+        "Essential for all life forms",
+        "Universal solvent in chemistry",
+        "Coolant in nuclear reactors",
+        "Fire suppression",
+        "Hydroelectric power generation"
+      ],
+      "formation_reaction": "2H₂ + O₂ → 2H₂O",
+      "bond_type": "Covalent (polar)",
+      "interesting_facts": [
+        "Most abundant compound on Earth's surface",
+        "Expands when it freezes",
+        "Has maximum density at 4°C"
+      ],
+      "safety": "Generally safe",
+      "discovery": "Known since prehistoric times",
+      "category": "Oxide"
+    },
+    {
+      "formula": "CaO",
+      "name": "Calcium Oxide",
+      "elements": ["Ca", "O"],
+      "element_counts": {"Ca": 1, "O": 1},
+      "molecular_mass": 56.08,
+      "state": "Solid",
+      "melting_point": 2613,
+      "boiling_point": 2850,
+      "density": 3.34,
+      "color": "White",
+      "solubility": "Moderately soluble in water",
+      "reactivity": "Highly reactive with water",
+      "uses": [
+        "Steel production",
+        "Cement and mortar production",
+        "Water treatment",
+        "Agriculture (soil pH adjustment)",
+        "Glass manufacturing"
+      ],
+      "formation_reaction": "2Ca + O₂ → 2CaO",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Also called quicklime",
+        "Releases heat when mixed with water",
+        "Used in ancient Roman concrete"
+      ],
+      "safety": "Caustic - can cause severe burns",
+      "discovery": "Known since ancient times",
+      "category": "Oxide"
+    },
+    {
+      "formula": "FeO",
+      "name": "Iron(II) Oxide",
+      "elements": ["Fe", "O"],
+      "element_counts": {"Fe": 1, "O": 1},
+      "molecular_mass": 71.84,
+      "state": "Solid",
+      "melting_point": 1377,
+      "boiling_point": null,
+      "density": 5.7,
+      "color": "Black",
+      "solubility": "Insoluble in water",
+      "reactivity": "Can be oxidized to Fe2O3",
+      "uses": [
+        "Iron ore for steel production",
+        "Pigments",
+        "Catalyst",
+        "Magnetic materials",
+        "Metallurgy"
+      ],
+      "formation_reaction": "2Fe + O₂ → 2FeO",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Common iron ore",
+        "Magnetic properties",
+        "Used in steel production"
+      ],
+      "safety": "Generally safe",
+      "discovery": "Known since ancient times",
+      "category": "Oxide"
+    },
+    {
+      "formula": "CuS",
+      "name": "Copper(II) Sulfide",
+      "elements": ["Cu", "S"],
+      "element_counts": {"Cu": 1, "S": 1},
+      "molecular_mass": 95.61,
+      "state": "Solid",
+      "melting_point": 1129,
+      "boiling_point": null,
+      "density": 4.76,
+      "color": "Black",
+      "solubility": "Insoluble in water",
+      "reactivity": "Stable under normal conditions",
+      "uses": [
+        "Copper ore",
+        "Semiconductor applications",
+        "Pigments",
+        "Catalyst",
+        "Solar cells"
+      ],
+      "formation_reaction": "Cu + S → CuS",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Important copper ore",
+        "Semiconductor properties",
+        "Used in solar cells"
+      ],
+      "safety": "Generally safe",
+      "discovery": "Known since ancient times",
+      "category": "Sulfide"
+    },
+    {
+      "formula": "AgBr",
+      "name": "Silver Bromide",
+      "elements": ["Ag", "Br"],
+      "element_counts": {"Ag": 1, "Br": 1},
+      "molecular_mass": 187.77,
+      "state": "Solid",
+      "melting_point": 432,
+      "boiling_point": 1502,
+      "density": 6.47,
+      "color": "Pale yellow",
+      "solubility": "Very slightly soluble in water",
+      "reactivity": "Photosensitive, decomposes in light",
+      "uses": [
+        "Photography (photographic film)",
+        "Silver plating",
+        "Antimicrobial applications",
+        "Optical applications",
+        "Medical devices"
+      ],
+      "formation_reaction": "Ag + ½Br₂ → AgBr",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Darkens when exposed to light",
+        "Used in traditional photography",
+        "Antimicrobial properties"
+      ],
+      "safety": "Generally safe",
+      "discovery": "Known since the 19th century",
+      "category": "Halide"
+    },
+    {
+      "formula": "LaF3",
+      "name": "Lanthanum Fluoride",
+      "elements": ["La", "F"],
+      "element_counts": {"La": 1, "F": 3},
+      "molecular_mass": 195.90,
+      "state": "Solid",
+      "melting_point": 1493,
+      "boiling_point": 2327,
+      "density": 5.94,
+      "color": "White",
+      "solubility": "Slightly soluble in water",
+      "reactivity": "Stable under normal conditions",
+      "uses": [
+        "Optical applications",
+        "Laser crystals",
+        "Fluoride ion conductor",
+        "Research applications",
+        "Specialized glass"
+      ],
+      "formation_reaction": "2La + 3F₂ → 2LaF₃",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Lanthanide compound",
+        "Used in optical applications",
+        "High melting point"
+      ],
+      "safety": "Handle with care",
+      "discovery": "Known since lanthanide discovery",
+      "category": "Halide"
+    },
+    {
+      "formula": "CeO2",
+      "name": "Cerium Dioxide",
+      "elements": ["Ce", "O"],
+      "element_counts": {"Ce": 1, "O": 2},
+      "molecular_mass": 172.11,
+      "state": "Solid",
+      "melting_point": 2400,
+      "boiling_point": 3500,
+      "density": 7.22,
+      "color": "Pale yellow",
+      "solubility": "Insoluble in water",
+      "reactivity": "Stable, good oxygen storage",
+      "uses": [
+        "Catalytic converters",
+        "Glass polishing",
+        "Fuel cells",
+        "UV protection",
+        "Ceramic applications"
+      ],
+      "formation_reaction": "Ce + O₂ → CeO₂",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Lanthanide oxide",
+        "Excellent oxygen storage capacity",
+        "Used in catalytic converters"
+      ],
+      "safety": "Generally safe",
+      "discovery": "Known since cerium discovery",
+      "category": "Oxide"
+    },
+    {
+      "formula": "NdCl3",
+      "name": "Neodymium Chloride",
+      "elements": ["Nd", "Cl"],
+      "element_counts": {"Nd": 1, "Cl": 3},
+      "molecular_mass": 250.60,
+      "state": "Solid",
+      "melting_point": 759,
+      "boiling_point": 1600,
+      "density": 4.13,
+      "color": "Purple",
+      "solubility": "Highly soluble in water",
+      "reactivity": "Hygroscopic, stable",
+      "uses": [
+        "Neodymium metal production",
+        "Laser applications",
+        "Magnetic materials",
+        "Research purposes",
+        "Specialized glass"
+      ],
+      "formation_reaction": "2Nd + 3Cl₂ → 2NdCl₃",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Lanthanide compound",
+        "Purple color",
+        "Used in powerful magnets"
+      ],
+      "safety": "Handle with appropriate precautions",
+      "discovery": "Known since neodymium discovery",
+      "category": "Halide"
+    },
+    {
+      "formula": "UO2",
+      "name": "Uranium Dioxide",
+      "elements": ["U", "O"],
+      "element_counts": {"U": 1, "O": 2},
+      "molecular_mass": 270.03,
+      "state": "Solid",
+      "melting_point": 2865,
+      "boiling_point": 3815,
+      "density": 10.97,
+      "color": "Black",
+      "solubility": "Insoluble in water",
+      "reactivity": "Stable, radioactive",
+      "uses": [
+        "Nuclear fuel",
+        "Nuclear reactors",
+        "Research applications",
+        "Radiation shielding",
+        "Nuclear technology"
+      ],
+      "formation_reaction": "U + O₂ → UO₂",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Primary nuclear fuel",
+        "Actinide compound",
+        "High melting point"
+      ],
+      "safety": "Radioactive - requires special handling",
+      "discovery": "Known since uranium discovery",
+      "category": "Oxide"
+    },
+    {
+      "formula": "ThF4",
+      "name": "Thorium Tetrafluoride",
+      "elements": ["Th", "F"],
+      "element_counts": {"Th": 1, "F": 4},
+      "molecular_mass": 308.03,
+      "state": "Solid",
+      "melting_point": 1110,
+      "boiling_point": 1680,
+      "density": 6.32,
+      "color": "White",
+      "solubility": "Slightly soluble in water",
+      "reactivity": "Stable, radioactive",
+      "uses": [
+        "Thorium metal production",
+        "Nuclear applications",
+        "Research purposes",
+        "Specialized ceramics",
+        "High-temperature applications"
+      ],
+      "formation_reaction": "Th + 2F₂ → ThF₄",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Actinide compound",
+        "Used in nuclear technology",
+        "High melting point"
+      ],
+      "safety": "Radioactive - requires special handling",
+      "discovery": "Known since thorium discovery",
+      "category": "Halide"
+    },
+    {
+      "formula": "PuCl3",
+      "name": "Plutonium Trichloride",
+      "elements": ["Pu", "Cl"],
+      "element_counts": {"Pu": 1, "Cl": 3},
+      "molecular_mass": 350.45,
+      "state": "Solid",
+      "melting_point": 760,
+      "boiling_point": 1500,
+      "density": 5.71,
+      "color": "Green",
+      "solubility": "Soluble in water",
+      "reactivity": "Stable, highly radioactive",
+      "uses": [
+        "Plutonium metal production",
+        "Nuclear research",
+        "Specialized applications",
+        "Nuclear technology",
+        "Research purposes"
+      ],
+      "formation_reaction": "2Pu + 3Cl₂ → 2PuCl₃",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Actinide compound",
+        "Highly radioactive",
+        "Green color"
+      ],
+      "safety": "Extremely dangerous - highly radioactive",
+      "discovery": "Known since plutonium discovery",
+      "category": "Halide"
+    },
+    {
+      "formula": "RfF4",
+      "name": "Rutherfordium Tetrafluoride",
+      "elements": ["Rf", "F"],
+      "element_counts": {"Rf": 1, "F": 4},
+      "molecular_mass": 343.0,
+      "state": "Solid",
+      "melting_point": null,
+      "boiling_point": null,
+      "density": null,
+      "color": "Unknown",
+      "solubility": "Unknown",
+      "reactivity": "Highly radioactive, short-lived",
+      "uses": [
+        "Research purposes only",
+        "Nuclear physics studies",
+        "Theoretical applications",
+        "Scientific research",
+        "Element synthesis"
+      ],
+      "formation_reaction": "Rf + 2F₂ → RfF₄",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Super-heavy element compound",
+        "Extremely short half-life",
+        "Synthetic element"
+      ],
+      "safety": "Extremely dangerous - highly radioactive",
+      "discovery": "Theoretical compound",
+      "category": "Halide"
+    },
+    {
+      "formula": "Db2O5",
+      "name": "Dubnium Pentoxide",
+      "elements": ["Db", "O"],
+      "element_counts": {"Db": 2, "O": 5},
+      "molecular_mass": 616.0,
+      "state": "Solid",
+      "melting_point": null,
+      "boiling_point": null,
+      "density": null,
+      "color": "Unknown",
+      "solubility": "Unknown",
+      "reactivity": "Highly radioactive, short-lived",
+      "uses": [
+        "Research purposes only",
+        "Nuclear physics studies",
+        "Theoretical applications",
+        "Scientific research",
+        "Element synthesis"
+      ],
+      "formation_reaction": "4Db + 5O₂ → 2Db₂O₅",
+      "bond_type": "Ionic",
+      "interesting_facts": [
+        "Super-heavy element compound",
+        "Extremely short half-life",
+        "Synthetic element"
+      ],
+      "safety": "Extremely dangerous - highly radioactive",
+      "discovery": "Theoretical compound",
+      "category": "Oxide"
+    }
+  ]
+}
