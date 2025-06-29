@@ -445,16 +445,8 @@ function renderMiniPeriodicTable() {
 
 // Select an element for mixing
 function selectElement(element) {
-    // Check if element is already selected
-    const isAlreadySelected = selectedElements.some(el => el.symbol === element.symbol);
-
-    if (isAlreadySelected) {
-        // Remove element if already selected
-        selectedElements = selectedElements.filter(el => el.symbol !== element.symbol);
-    } else {
-        // Add element to selection
-        selectedElements.push(element);
-    }
+    // Always add element to selection (allow multiple instances)
+    selectedElements.push(element);
 
     updateSelectedElementsDisplay();
     updateMiniTableSelection();
@@ -470,17 +462,55 @@ function updateSelectedElementsDisplay() {
         container.classList.remove('has-elements');
     } else {
         container.classList.add('has-elements');
-        container.innerHTML = selectedElements.map(element => `
+
+        // Count elements
+        const elementCounts = {};
+        selectedElements.forEach(element => {
+            const symbol = element.symbol;
+            if (!elementCounts[symbol]) {
+                elementCounts[symbol] = { element: element, count: 0 };
+            }
+            elementCounts[symbol].count++;
+        });
+
+        // Display elements with counts
+        container.innerHTML = Object.values(elementCounts).map(({ element, count }) => `
             <div class="selected-element">
-                <span>${element.symbol} - ${element.name}</span>
-                <button class="remove-btn" onclick="removeElement('${element.symbol}')">×</button>
+                <span>${element.symbol}${count > 1 ? `<sub>${count}</sub>` : ''} - ${element.name}</span>
+                <div class="element-controls">
+                    <button class="add-btn" onclick="addElement('${element.symbol}')" title="Add another ${element.symbol}">+</button>
+                    <button class="remove-btn" onclick="removeElement('${element.symbol}')" title="Remove one ${element.symbol}">−</button>
+                    <button class="remove-all-btn" onclick="removeAllElement('${element.symbol}')" title="Remove all ${element.symbol}">×</button>
+                </div>
             </div>
         `).join('');
     }
 }
 
-// Remove an element from selection
+// Add another instance of an element
+function addElement(symbol) {
+    const element = elementsData.find(el => el.symbol === symbol);
+    if (element) {
+        selectedElements.push(element);
+        updateSelectedElementsDisplay();
+        updateMiniTableSelection();
+        updateMixButton();
+    }
+}
+
+// Remove one instance of an element from selection
 function removeElement(symbol) {
+    const index = selectedElements.findIndex(el => el.symbol === symbol);
+    if (index !== -1) {
+        selectedElements.splice(index, 1);
+        updateSelectedElementsDisplay();
+        updateMiniTableSelection();
+        updateMixButton();
+    }
+}
+
+// Remove all instances of an element from selection
+function removeAllElement(symbol) {
     selectedElements = selectedElements.filter(el => el.symbol !== symbol);
     updateSelectedElementsDisplay();
     updateMiniTableSelection();
@@ -490,17 +520,55 @@ function removeElement(symbol) {
 // Update mini table visual selection
 function updateMiniTableSelection() {
     const miniElements = document.querySelectorAll('.mini-element');
+
+    // Count selected elements
+    const elementCounts = {};
+    selectedElements.forEach(element => {
+        const symbol = element.symbol;
+        elementCounts[symbol] = (elementCounts[symbol] || 0) + 1;
+    });
+
     miniElements.forEach(el => {
         const symbol = el.querySelector('.symbol').textContent;
-        const isSelected = selectedElements.some(elem => elem.symbol === symbol);
+        const count = elementCounts[symbol] || 0;
+        const isSelected = count > 0;
+
         el.classList.toggle('selected', isSelected);
+
+        // Add count indicator
+        let countIndicator = el.querySelector('.count-indicator');
+        if (count > 1) {
+            if (!countIndicator) {
+                countIndicator = document.createElement('div');
+                countIndicator.className = 'count-indicator';
+                el.appendChild(countIndicator);
+            }
+            countIndicator.textContent = count;
+        } else if (countIndicator) {
+            countIndicator.remove();
+        }
     });
 }
 
 // Update mix button state
 function updateMixButton() {
     const mixBtn = document.getElementById('mix-elements-btn');
-    mixBtn.disabled = selectedElements.length < 2;
+    mixBtn.disabled = selectedElements.length < 1;
+
+    // Update button text based on selection
+    const elementCounts = {};
+    selectedElements.forEach(element => {
+        elementCounts[element.symbol] = (elementCounts[element.symbol] || 0) + 1;
+    });
+
+    const uniqueElements = Object.keys(elementCounts).length;
+    if (selectedElements.length === 0) {
+        mixBtn.textContent = '🔥 Mix Elements';
+    } else if (uniqueElements === 1) {
+        mixBtn.textContent = `🔥 Analyze ${Object.keys(elementCounts)[0]}`;
+    } else {
+        mixBtn.textContent = `🔥 Mix ${uniqueElements} Elements`;
+    }
 }
 
 // Clear all selected elements
@@ -515,8 +583,8 @@ function clearSelection() {
 
 // Mix selected elements
 async function mixElements() {
-    if (selectedElements.length < 2) {
-        alert('Please select at least 2 elements to mix!');
+    if (selectedElements.length < 1) {
+        alert('Please select at least 1 element to analyze or mix!');
         return;
     }
 
