@@ -114,7 +114,7 @@ header::before {
     z-index: -1;
 }
 
-header h1 {
+header h1 { 
     font-family: 'Orbitron', monospace;
     font-size: 3.5rem;
     font-weight: 900;
@@ -226,7 +226,7 @@ main {
     display: grid;
     grid-template-columns: repeat(18, 1fr);
     grid-template-rows: repeat(9, auto);
-    gap: 2px;
+    gap: 5px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -766,12 +766,20 @@ s
 }
 
 /* Panel Layout */
-.mixer-left-panel,
-.mixer-right-panel {
+.mixer-left-panel {
     display: flex;
     flex-direction: column;
     gap: 2rem;
 }
+
+.mixer-right-panel {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    height:100%;
+}
+
 
 @media (min-width: 1024px) {
     .mixer-container {
@@ -1089,7 +1097,7 @@ s
 .mini-periodic-table {
     display: grid;
     grid-template-columns: repeat(18, 1fr);
-    gap: 1px;
+    gap: 4px;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -1097,8 +1105,8 @@ s
 /* Dark Mode Mini Elements */
 .mini-element {
     aspect-ratio: 1;
-    min-width: 30px;
-    min-height: 30px;
+    min-width: 40px;
+    min-height: 40px;
     border: 1px solid rgba(100, 116, 139, 0.3);
     border-radius: 4px;
     display: flex;

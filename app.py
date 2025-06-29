@@ -138,8 +138,8 @@ def search_elements():
 
     results = []
     for element in elements_data['elements']:
-        if (query in element['name'].lower() or
-            query in element['symbol'].lower() or
+        if (element['name'].lower().startswith(query) or
+            element['symbol'].lower().startswith(query) or
             str(element['number']) == query):
             results.append(element)
 
