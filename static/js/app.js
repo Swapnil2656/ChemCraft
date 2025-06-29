@@ -21,12 +21,23 @@ async function loadElements() {
         console.log('Response status:', response.status);
         const data = await response.json();
         console.log('Elements data loaded:', data);
-        elementsData = data.elements;
+
+        // Handle both direct array and nested structure
+        if (Array.isArray(data)) {
+            elementsData = data;
+        } else if (data.elements && Array.isArray(data.elements)) {
+            elementsData = data.elements;
+        } else {
+            console.error('Unexpected data structure:', data);
+            elementsData = [];
+        }
+
         console.log('Elements array length:', elementsData.length);
         renderPeriodicTable();
         renderMiniPeriodicTable();
     } catch (error) {
         console.error('Error loading elements:', error);
+        elementsData = [];
     }
 }
 
@@ -102,13 +113,24 @@ function renderPeriodicTable() {
         return;
     }
 
+    if (!elementsData || elementsData.length === 0) {
+        console.error('No elements data available!');
+        tableContainer.innerHTML = '<p style="color: red; text-align: center; padding: 20px;">Error: No elements data loaded. Please refresh the page.</p>';
+        return;
+    }
+
     tableContainer.innerHTML = '';
     console.log('Elements data length:', elementsData.length);
+    console.log('First element:', elementsData[0]);
 
     // Create grid with proper positioning
+    let elementsCreated = 0;
+
     elementsData.forEach(element => {
         const elementDiv = document.createElement('div');
         elementDiv.className = `element ${getCategoryClass(element.category)}`;
+
+        console.log(`Creating element ${element.symbol} (${element.name})`);
 
         // Handle special positioning for lanthanides and actinides
         if (element.category === 'lanthanide') {
@@ -133,8 +155,15 @@ function renderPeriodicTable() {
             }
         } else {
             // Normal positioning
-            elementDiv.style.gridColumn = element.group || 'auto';
-            elementDiv.style.gridRow = element.period || 'auto';
+            const column = element.group || 'auto';
+            const row = element.period || 'auto';
+            elementDiv.style.gridColumn = column;
+            elementDiv.style.gridRow = row;
+
+            // Debug positioning for first few elements
+            if (element.number <= 5) {
+                console.log(`Element ${element.symbol}: group=${element.group}, period=${element.period}, column=${column}, row=${row}`);
+            }
         }
 
         elementDiv.innerHTML = `
@@ -145,7 +174,42 @@ function renderPeriodicTable() {
 
         elementDiv.addEventListener('click', () => showElementDetails(element));
         tableContainer.appendChild(elementDiv);
+        elementsCreated++;
     });
+
+    console.log(`Periodic table rendered with ${elementsCreated} elements`);
+    console.log('Table container children count:', tableContainer.children.length);
+
+    // If no elements were created, show an error message and try simple rendering
+    if (elementsCreated === 0) {
+        console.error('No elements were created, trying simple rendering...');
+        tableContainer.innerHTML = '';
+
+        // Try simple rendering without grid positioning
+        elementsData.slice(0, 10).forEach((element, index) => {
+            const simpleDiv = document.createElement('div');
+            simpleDiv.className = 'element';
+            simpleDiv.style.display = 'inline-block';
+            simpleDiv.style.margin = '5px';
+            simpleDiv.innerHTML = `
+                <div class="number">${element.number}</div>
+                <div class="symbol">${element.symbol}</div>
+                <div class="name">${element.name}</div>
+            `;
+            simpleDiv.addEventListener('click', () => showElementDetails(element));
+            tableContainer.appendChild(simpleDiv);
+        });
+
+        const errorDiv = document.createElement('div');
+        errorDiv.innerHTML = `
+            <div style="grid-column: 1 / -1; text-align: center; padding: 20px; color: red;">
+                <h3>Grid positioning failed - showing first 10 elements in simple layout</h3>
+                <p>Elements data length: ${elementsData.length}</p>
+                <button onclick="loadElements()" style="padding: 10px; margin-top: 10px;">Retry Loading Elements</button>
+            </div>
+        `;
+        tableContainer.appendChild(errorDiv);
+    }
 }
 
 // Get CSS class for element category
@@ -398,10 +462,23 @@ function displaySearchResults(results) {
 
 // Render mini periodic table for element selection
 function renderMiniPeriodicTable() {
+    console.log('Rendering mini periodic table...');
     const tableContainer = document.getElementById('mini-periodic-table');
-    if (!tableContainer) return;
+    console.log('Mini table container found:', tableContainer);
+
+    if (!tableContainer) {
+        console.error('Mini periodic table container not found!');
+        return;
+    }
+
+    if (!elementsData || elementsData.length === 0) {
+        console.error('No elements data available for mini table!');
+        tableContainer.innerHTML = '<p style="color: red; text-align: center; padding: 10px;">Error: No elements data loaded.</p>';
+        return;
+    }
 
     tableContainer.innerHTML = '';
+    console.log('Rendering', elementsData.length, 'elements in mini table');
 
     elementsData.forEach(element => {
         const elementDiv = document.createElement('div');

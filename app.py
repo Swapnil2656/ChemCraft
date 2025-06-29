@@ -2,18 +2,70 @@ from flask import Flask, render_template, jsonify, request
 import json
 import random
 import os
+import logging
 
 app = Flask(__name__)
 
+# Configure logging for debugging
+logging.basicConfig(level=logging.DEBUG)
+app.logger.setLevel(logging.DEBUG)
+
+# Add error handlers for debugging
+@app.errorhandler(404)
+def not_found_error(error):
+    app.logger.error(f"404 error: {request.url}")
+    return jsonify({'error': 'Page not found', 'url': request.url}), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    app.logger.error(f"500 error: {error}")
+    return jsonify({'error': 'Internal server error'}), 500
+
 # Load elements data
 def load_elements():
-    with open('data/elements.json', 'r') as f:
-        return json.load(f)
+    try:
+        file_path = os.path.join(os.path.dirname(__file__), 'data', 'elements.json')
+        app.logger.info(f"Loading elements from: {file_path}")
+        with open(file_path, 'r') as f:
+            data = json.load(f)
+
+        # Handle both direct array and nested structure
+        if isinstance(data, dict) and 'elements' in data:
+            elements = data['elements']
+        elif isinstance(data, list):
+            elements = data
+        else:
+            app.logger.error(f"Unexpected data structure in elements.json")
+            return []
+
+        app.logger.info(f"Loaded {len(elements)} elements")
+        return elements
+    except Exception as e:
+        app.logger.error(f"Error loading elements: {e}")
+        return []
 
 # Load compounds data
 def load_compounds():
-    with open('data/compounds.json', 'r', encoding='utf-8') as f:
-        return json.load(f)
+    try:
+        file_path = os.path.join(os.path.dirname(__file__), 'data', 'compounds.json')
+        app.logger.info(f"Loading compounds from: {file_path}")
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+
+        # Handle both direct array and nested structure
+        if isinstance(data, dict) and 'compounds' in data:
+            compounds = data['compounds']
+        elif isinstance(data, list):
+            compounds = data
+        else:
+            app.logger.error(f"Unexpected data structure in compounds.json")
+            return []
+
+        app.logger.info(f"Loaded {len(compounds)} compounds")
+        return compounds
+    except Exception as e:
+        app.logger.error(f"Error loading compounds: {e}")
+        return []
 
 elements_data = load_elements()
 compounds_data = load_compounds()
@@ -21,7 +73,77 @@ compounds_data = load_compounds()
 @app.route('/')
 def index():
     """Main page with periodic table and quiz"""
-    return render_template('index.html')
+    try:
+        app.logger.info("Serving main page")
+        return render_template('index.html')
+    except Exception as e:
+        app.logger.error(f"Error serving main page: {e}")
+        return f"Error loading page: {e}", 500
+
+@app.route('/health')
+def health_check():
+    """Health check endpoint for deployment"""
+    return jsonify({
+        'status': 'healthy',
+        'elements_loaded': len(elements_data),
+        'compounds_loaded': len(compounds_data),
+        'version': '1.0.0'
+    })
+
+@app.route('/debug')
+def debug_page():
+    """Debug page to test element loading"""
+    return f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>ChemCraft Debug</title>
+        <style>
+            body {{ font-family: Arial, sans-serif; margin: 20px; background: #0f172a; color: white; }}
+            .element {{
+                display: inline-block;
+                width: 60px;
+                height: 60px;
+                border: 1px solid #ccc;
+                margin: 2px;
+                text-align: center;
+                background: #1e293b;
+                color: white;
+                font-size: 12px;
+                padding: 5px;
+            }}
+        </style>
+    </head>
+    <body>
+        <h1>ChemCraft Debug Page</h1>
+        <p>Elements loaded: {len(elements_data)}</p>
+        <p>Compounds loaded: {len(compounds_data)}</p>
+
+        <h2>First 10 Elements:</h2>
+        <div>
+            {''.join([f'<div class="element"><div>{el["symbol"]}</div><div>{el["name"]}</div></div>' for el in elements_data[:10]])}
+        </div>
+
+        <h2>API Test:</h2>
+        <button onclick="testAPI()">Test Elements API</button>
+        <div id="result"></div>
+
+        <script>
+            async function testAPI() {{
+                try {{
+                    const response = await fetch('/api/elements');
+                    const data = await response.json();
+                    document.getElementById('result').innerHTML =
+                        '<p>API Response: ' + data.length + ' elements loaded</p>' +
+                        '<p>First element: ' + JSON.stringify(data[0], null, 2) + '</p>';
+                }} catch (error) {{
+                    document.getElementById('result').innerHTML = '<p style="color: red;">Error: ' + error + '</p>';
+                }}
+            }}
+        </script>
+    </body>
+    </html>
+    """
 
 @app.route('/api/elements')
 def get_elements():
@@ -688,4 +810,9 @@ def generate_hypothetical_compound(elements):
     }
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Get port from environment variable for deployment compatibility
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV') == 'development'
+
+    app.logger.info(f"Starting ChemCraft on port {port}")
+    app.run(debug=debug, host='0.0.0.0', port=port)
